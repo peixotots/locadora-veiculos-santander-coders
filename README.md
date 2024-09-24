@@ -4,11 +4,11 @@
 </div>
 
 <h1 align="center">
-  <img alt="Santander Coders" src="https://ada-strapi-production.s3.sa-east-1.amazonaws.com/Thumb_Meta_20_f25502065b.png" width="500" height="300">
+  <img alt="Santander Coders" src="https://ada-strapi-production.s3.sa-east-1.amazonaws.com/Thumb_Meta_20_f25502065b.png" width="400" height="240">
 </h1>
 
 <div align="center">
-<b>Módulo 3: Programação Orientada a Objetos II</b><br>Projeto desenvolvido pelo grupo 5 da turma 1173 do programa <b>Santander Coders</b> 2024.1 em parceria com a <b>Ada Tech</b>
+<b><span style="font-size: 18px;">Módulo 3: Programação Orientada a Objetos II</span></b><br>Projeto desenvolvido pelo grupo 5 da turma 1173 do programa <b>Santander Coders</b> 2024.1 em parceria com a <b>Ada Tech</b>
 </div>
 
 ## Objetivo do Projeto
