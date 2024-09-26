@@ -1,5 +1,6 @@
 package model.veiculo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,14 +10,16 @@ public abstract class Veiculo {
     protected String modelo;
     protected String marca;
     protected Boolean disponivel;
-    protected int valor;
+    protected BigDecimal valor;
 
-    public Veiculo(String placa, String modelo, String marca, int valor) {
+    public Veiculo(String placa, String modelo, String marca) {
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
         this.disponivel = true;
-        this.valor = valor;
+    }
+
+    public Veiculo() {
     }
 
     public static Veiculo buscarPorPlaca(String placa) {
@@ -53,5 +56,9 @@ public abstract class Veiculo {
 
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
     }
 }
