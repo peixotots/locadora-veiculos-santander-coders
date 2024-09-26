@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface VeiculoService<T extends Veiculo> {
 
-    T cadastrar(T veiculo);
+    T cadastrar(T veiculo, int tipo);
     T alterar(T veiculo);
-    T buscarPorNome(String nome);
+    T buscarPorPlaca(String placa);
     List<T> listar();
     void remover(T veiculo);
 

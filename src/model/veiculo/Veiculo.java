@@ -1,17 +1,26 @@
 package model.veiculo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Veiculo {
 
     protected String placa;
     protected String modelo;
     protected String marca;
     protected Boolean disponivel;
+    protected int valor;
 
-    public Veiculo(String placa, String modelo, String marca, Boolean disponivel) {
+    public Veiculo(String placa, String modelo, String marca, int valor) {
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
-        this.disponivel = disponivel;
+        this.disponivel = true;
+        this.valor = valor;
+    }
+
+    public static Veiculo buscarPorPlaca(String placa) {
+        return null;
     }
 
     public String getPlaca() {

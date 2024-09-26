@@ -16,18 +16,32 @@ public class VeiculoServiceImpl<T extends Veiculo> implements VeiculoService<T> 
     }
 
     @Override
-    public T cadastrar(T veiculo) {
-        //regras aqui
+    public T cadastrar(T veiculo, int tipo) {
+        if (veiculo.getPlaca().length() != 6) {
+            throw new IllegalArgumentException("A placa deve conter 6 dígitos");
+        }
+        if (veiculo.getModelo().isEmpty()) {
+            throw new IllegalArgumentException("O modelo não pode ser vazio");
+        }
+        if (veiculo.getMarca().isEmpty()) {
+            throw new IllegalArgumentException("A marca não pode ser vazia");
+        }
+
         return this.VeiculoRepository.salvar(veiculo);
     }
 
     @Override
     public T alterar(T veiculo) {
+        //regras
+
         return this.VeiculoRepository.alterar(veiculo);
     }
 
     @Override
-    public T buscarPorNome(String nome) {
+    public T buscarPorPlaca(String placa) {
+        if(this.veiculoRepository.buscarPor(placa).isPresent())
+            return (T) this.veiculoRepository.buscarPor(placa).get();
+
         return null;
     }
 
