@@ -1,5 +1,7 @@
 package controller;
 
+import model.exception.OpcaoInvalidaException;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +33,7 @@ public abstract class Menu {
         return bordaTopo + "\n" + linhaTitulo + "\n" + linhaCentral + "\n" + opcoesConcatenadas + bordaFim;
     }
 
-    public abstract void selecionaOpcao();
+    public abstract void selecionaOpcao() throws OpcaoInvalidaException;
 
 }
 
