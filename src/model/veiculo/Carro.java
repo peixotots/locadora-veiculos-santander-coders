@@ -4,10 +4,14 @@ import java.math.BigDecimal;
 
 public class Carro extends Veiculo {
 
-    private BigDecimal valor = new BigDecimal("150");
+    public Carro(String placa, String modelo, String marca) {
+        super(placa, modelo, marca);
+        this.valor = new BigDecimal("150");
 
-    public Carro(String placa, String modelo, String marca, Boolean disponivel) {
-        super(placa, modelo, marca, disponivel);
+    }
+
+    public Carro() {
+        this.valor = new BigDecimal("150");
     }
 
     public BigDecimal getValor() {
@@ -16,12 +20,11 @@ public class Carro extends Veiculo {
 
     @Override
     public String toString() {
-        return "Carro{" +
-                "valor=" + valor +
-                ", placa='" + placa + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", marca='" + marca + '\'' +
-                ", disponivel=" + disponivel +
-                '}';
+        return "CARRO: " +
+                "Valor: R$" + valor +
+                ", Placa: " + placa +
+                ", Modelo: " + modelo +
+                ", Marca: " + marca +
+                ", Está disponível? " + disponivel;
     }
 }

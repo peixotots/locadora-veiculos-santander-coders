@@ -4,9 +4,27 @@ import java.math.BigDecimal;
 
 public class Moto extends Veiculo {
 
-    private BigDecimal valor = new BigDecimal("100");
+    public Moto(String placa, String modelo, String marca) {
+        super(placa, modelo, marca);
+        this.valor = new BigDecimal("100");
+    }
 
-    public Moto(String placa, String modelo, String marca, Boolean disponivel) {
-        super(placa, modelo, marca, disponivel);
+    public Moto() {
+        this.valor = new BigDecimal("100");
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Moto{" +
+                "placa='" + placa + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", marca='" + marca + '\'' +
+                ", disponivel=" + disponivel +
+                ", valor=" + valor +
+                '}';
     }
 }
