@@ -8,20 +8,22 @@ import java.util.List;
 public class MenuPrincipal extends Menu {
     @Override
     public void selecionaOpcao() throws OpcaoInvalidaException {
-        String menu = Menu.geraMenuComOpcoes("SISTEMA DE LOCADORA", List.of("Cadastro de veículos", "Cadastro de agências", "Cadastro de clientes", "Aluguéis", "Comprovantes", "Sair"));
+        String menu = Menu.geraMenuComOpcoes("LOCADORA DE VEÍCULOS", List.of("Cadastro de veículos", "Cadastro de agências", "Cadastro de clientes", "Aluguéis", "Comprovantes", "Sair"));
 
         int opcaoSelecionada = 0;
 
         try {
             do {
                 System.out.println(menu);
-                opcaoSelecionada = Util.lerNumeroInteiro("Digite uma opção");
+                opcaoSelecionada = Util.lerNumeroInteiro("DIGITE UMA OPÇÃO:");
                 switch (opcaoSelecionada) {
                     case 1:
                         MenuVeiculo menuVeiculo = new MenuVeiculo();
                         menuVeiculo.selecionaOpcao();
                         break;
                     case 2:
+                        MenuAgencia menuAgencia = new MenuAgencia();
+                        menuAgencia.selecionaOpcao();
                         break;
                     case 3:
                         MenuPessoa menuPessoa = new MenuPessoa();
@@ -37,8 +39,7 @@ public class MenuPrincipal extends Menu {
                 }
             } while (opcaoSelecionada != 6);
 
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
 

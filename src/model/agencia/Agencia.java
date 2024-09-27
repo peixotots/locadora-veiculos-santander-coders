@@ -50,4 +50,12 @@ public class Agencia {
     public void setVeiculos(List<Veiculo> veiculos) {
         this.veiculos = veiculos;
     }
+
+    @Override
+    public String toString() {
+        return "AGÊNCIA ENCONTRADA:" +
+                "\nNome: " + nome +
+                "\nEndereço: " + endereco +
+                "\nIdentificador: " + identificador;
+    }
 }
