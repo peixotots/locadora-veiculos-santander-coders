@@ -1,5 +1,6 @@
 package controller;
 
+import model.exception.OpcaoInvalidaException;
 import model.agencia.Agencia;
 import service.AgenciaService;
 import service.AgenciaServiceImpl;
@@ -13,12 +14,12 @@ public class MenuAgencia extends Menu {
 
     @Override
     public void selecionaOpcao() {
-        int opcaoSelecionada;
+        int opcaoSelecionada = 0;
 
         String menu = Menu.geraMenuComOpcoes("CADASTRO DE AGÊNCIAS", List.of("Cadastrar Agência", "Buscar Agência", "Alterar Agência", "Voltar"));
 
-        try {
-            do {
+        do {
+            try {
                 System.out.println(menu);
                 opcaoSelecionada = Util.lerNumeroInteiro("Digite a opção desejada: ");
 
@@ -26,7 +27,16 @@ public class MenuAgencia extends Menu {
                     case 1:
                         String nome = Util.lerTexto("Digite o nome da agência: ");
                         String endereco = Util.lerTexto("Digite o endereço da agência: ");
-                        int identificador = Util.lerNumeroInteiro("Digite o identificador da agência: ");
+                        int identificador = 0;
+                        boolean identificadorValido = false;
+                        while (!identificadorValido) {
+                            try {
+                                identificador = Util.lerNumeroInteiro("Digite o identificador (código numérico) da agência: ");
+                                identificadorValido = true;
+                            } catch (OpcaoInvalidaException e) {
+                                System.err.println("Identificador inválido. Por favor, digite um identificador válido (código numérico).");
+                            }
+                        }
                         Agencia agencia = new Agencia(nome, endereco, identificador);
                         agenciaService.cadastrar(agencia);
                         System.out.println("Agência cadastrada com sucesso!");
@@ -41,9 +51,19 @@ public class MenuAgencia extends Menu {
                         }
                         break;
                     case 3:
-                        int idAlterar = Util.lerNumeroInteiro("Digite o identificador da agência que deseja alterar: ");
+                        int idAlterar = 0;
+                        boolean idAlterarValido = false;
+                        while (!idAlterarValido) {
+                            try {
+                                idAlterar = Util.lerNumeroInteiro("Digite o identificador da agência que deseja alterar: ");
+                                idAlterarValido = true;
+                            } catch (OpcaoInvalidaException e) {
+                                System.err.println("Identificador inválido. Por favor, digite um identificador válido (código numérico).");
+                            }
+                        }
+                        final int finalIdAlterar = idAlterar; // Make idAlterar effectively final
                         Agencia agenciaAlterar = agenciaService.listar().stream()
-                                .filter(a -> a.getIdentificador() == idAlterar)
+                                .filter(a -> a.getIdentificador() == finalIdAlterar)
                                 .findFirst()
                                 .orElse(null);
                         if (agenciaAlterar != null) {
@@ -60,11 +80,14 @@ public class MenuAgencia extends Menu {
                     case 4:
                         System.out.println("Voltando...");
                         break;
+                    default:
+                        throw new OpcaoInvalidaException();
                 }
-            } while (opcaoSelecionada != 4);
-
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+            } catch (OpcaoInvalidaException e) {
+                System.err.println(e.getMessage());
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        } while (opcaoSelecionada != 4);
     }
 }

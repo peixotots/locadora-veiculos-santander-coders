@@ -56,6 +56,7 @@ public class Agencia {
         return "AGÊNCIA ENCONTRADA:" +
                 "\nNome: " + nome +
                 "\nEndereço: " + endereco +
-                "\nIdentificador: " + identificador;
+                "\nIdentificador: " + identificador +
+                "\n";
     }
 }
