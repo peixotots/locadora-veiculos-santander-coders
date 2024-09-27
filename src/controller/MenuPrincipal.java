@@ -24,6 +24,8 @@ public class MenuPrincipal extends Menu {
                     case 2:
                         break;
                     case 3:
+                        MenuPessoa menuPessoa = new MenuPessoa();
+                        menuPessoa.selecionaOpcao();
                         break;
                     case 4:
                         break;
