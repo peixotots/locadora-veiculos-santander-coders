@@ -34,7 +34,7 @@ public class MenuPrincipal extends Menu {
                     case 5:
                         break;
                     case 6:
-                        System.out.println("Encerrando o programa...");
+                        System.err.println("Encerrando o programa...");
                         break;
                     default:
                         throw new OpcaoInvalidaException();
