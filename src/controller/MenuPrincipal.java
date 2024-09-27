@@ -12,8 +12,8 @@ public class MenuPrincipal extends Menu {
 
         int opcaoSelecionada = 0;
 
-        try {
-            do {
+        do {
+            try {
                 System.out.println(menu);
                 opcaoSelecionada = Util.lerNumeroInteiro("DIGITE UMA OPÇÃO:");
                 switch (opcaoSelecionada) {
@@ -34,14 +34,16 @@ public class MenuPrincipal extends Menu {
                     case 5:
                         break;
                     case 6:
+                        System.out.println("Encerrando o programa...");
                         break;
-
+                    default:
+                        throw new OpcaoInvalidaException();
                 }
-            } while (opcaoSelecionada != 6);
-
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-
+            } catch (OpcaoInvalidaException e) {
+                System.err.println("Opção inválida! Por favor, digite uma opção válida.");
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        } while (opcaoSelecionada != 6);
     }
 }
