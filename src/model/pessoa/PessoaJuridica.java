@@ -28,5 +28,11 @@ public class PessoaJuridica extends Pessoa {
         // Implementação da geração de comprovante de devolução para pessoa jurídica
         return "Comprovante de Devolução - Pessoa Jurídica: " + getNome() + ", CNPJ: " + cnpj;
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa Juridica: " + getNome() +
+                "cnpj= " + cnpj;
+    }
 }
 

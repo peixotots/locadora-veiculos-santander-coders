@@ -8,7 +8,7 @@ import java.util.List;
 public class MenuPrincipal extends Menu {
     @Override
     public void selecionaOpcao() throws OpcaoInvalidaException {
-        String menu = Menu.geraMenuComOpcoes("LOCADORA DE VEÍCULOS", List.of("Cadastro de veículos", "Cadastro de agências", "Cadastro de clientes", "Aluguéis", "Comprovantes", "Sair"));
+        String menu = Menu.geraMenuComOpcoes("LOCADORA DE VEÍCULOS", List.of("Cadastro de veículos", "Cadastro de agências", "Cadastro de clientes", "Aluguéis", "Devolução", "Sair"));
 
         int opcaoSelecionada = 0;
 
@@ -30,8 +30,11 @@ public class MenuPrincipal extends Menu {
                         menuPessoa.selecionaOpcao();
                         break;
                     case 4:
+                        MenuAluguel menuAluguel = new MenuAluguel();
+                        menuAluguel.selecionaOpcao();
                         break;
                     case 5:
+                        // devolucao
                         break;
                     case 6:
                         System.err.println("Encerrando o programa...");

@@ -6,7 +6,6 @@ import model.veiculo.Veiculo;
 import java.time.LocalDateTime;
 
 public class Aluguel {
-
     protected Pessoa cliente;
     protected Agencia agencia;
     protected Veiculo veiculo;

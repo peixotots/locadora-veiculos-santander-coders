@@ -1,20 +1,31 @@
 package controller;
+
+import model.agencia.Agencia;
+import model.aluguel.Aluguel;
 import model.exception.OpcaoInvalidaException;
+import model.pessoa.Pessoa;
+import model.pessoa.PessoaFisica;
+import model.pessoa.PessoaJuridica;
+import model.veiculo.Veiculo;
 import service.*;
 import util.Util;
 
 import java.time.LocalDate;
 import java.util.List;
+
 public class MenuAluguel extends Menu {
     private PessoaService pessoaService = new PessoaServiceImpl();
     private VeiculoService veiculoService = new VeiculoServiceImpl();
-    private AluguelService aluguelService = new AluguelService();
+    private AluguelServiceImpl aluguelServiceImpl = new AluguelServiceImpl();
+    private AgenciaService agenciaService = new AgenciaServiceImpl();
+    private final AluguelService<Aluguel> aluguelService = new AluguelServiceImpl<>();
 
     int opcaoSelecionada;
 
     @Override
+
     public void selecionaOpcao() throws OpcaoInvalidaException {
-        String menu = Menu.geraMenuComOpcoes("Aluguel", List.of("Aluguel para P.fisica", "Aluguel para P.juridica", "Sair"));
+        String menu = Menu.geraMenuComOpcoes("Aluguel", List.of("1-Aluguel para pessoa fisica", "2-Aluguel para pessoa juridica", "3-Sair"));
 
         try {
             do {
@@ -24,30 +35,32 @@ public class MenuAluguel extends Menu {
                 switch (opcaoSelecionada) {
                     case 1:
                         try {
-                            System.out.println("Aluguel.");
-                            String nomeClienteParaAluguel;
-                            nomeClienteParaAluguel = Util.lerTexto("Digite o nome do cliente: ");
-                          //  pessoaService.buscarPorNome(nomeClienteParaAluguel);
+                            System.out.println("Aluguel pessoa fisica");
+                            String nomeClienteParaAluguel = Util.lerTexto("Digite o nome da Pessoa: ");
+                            Pessoa cliente = pessoaService.buscarPorNome(nomeClienteParaAluguel);
 
+                            String agenciaEscolhida = Util.lerTexto("Digite o nome ou endereço da Agencia: ");
+                            Agencia agencia = (Agencia) agenciaService.buscarPorNomeOuEndereco(agenciaEscolhida);
 
-                            String agenciaEscolhida = Util.lerTexto("Digite o nome da Agencia: ");
                             String veiculoEscolhido = Util.lerTexto("Digite a placa do Veículo: ");
-                            veiculoService.buscarPorPlaca(veiculoEscolhido);
+                            Veiculo veiculo = veiculoService.buscarPorPlaca(veiculoEscolhido);
 
-                            LocalDate dataInicial = aluguelService.definirDataInicial();
+                            LocalDate dataInicial = aluguelServiceImpl.definirDataInicial();
                             int quantidadeDias = Util.lerNumeroInteiro("Digite a quantidade de dias que você deseja alugar o veículo: ");
-                            LocalDate dataDevolucaoPrevista = aluguelService.definirDataDeDevolucaoPrevista(dataInicial, quantidadeDias);
+                            LocalDate dataDevolucaoPrevista = aluguelServiceImpl.definirDataDeDevolucaoPrevista(dataInicial, quantidadeDias);
 
-                            // Aluguel aluguel = new Aluguel(nomeClienteParaAluguel,agenciaEscolhida, veiculoEscolhido, dataInicial, dataDevolucaoPrevista)
-                            //aluguelService.criarAluguel();
+                            Aluguel aluguel = new Aluguel(cliente, agencia, veiculo, dataInicial.atStartOfDay(), dataDevolucaoPrevista.atStartOfDay());
+                            aluguelService.criarAluguel(aluguel);
+                            cliente.gerarComprovanteAluguel(); // falta colocar outras info
 
-                        }catch (Exception e) {
+                        } catch (Exception e) {
                             System.out.println(e.getMessage());
                         }
                         break;
 
                     case 2:
                         System.out.println("Aluguel para Pessoa Jurídica selecionado.");
+                        // quase msm coisa de P fisica
                         break;
 
                     case 3:
