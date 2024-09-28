@@ -7,17 +7,17 @@ import repository.PessoaRepositoryImpl;
 import java.util.List;
 import java.util.Optional;
 
-public class PessoaServiceImpl<T extends Pessoa> implements PessoaService<T> {
+public class PessoaServiceImpl implements PessoaService{
 
-    private final PessoaRepository<T> pessoaRepository;
+    private final PessoaRepository pessoaRepository;
 
     public PessoaServiceImpl() {
-        this.pessoaRepository = new PessoaRepositoryImpl<>();
+        this.pessoaRepository = PessoaRepositoryImpl.getInstancia();
     }
 
     @Override
-    public T cadastrar(T pessoa) {
-        Optional<T> pessoaExistente = this.pessoaRepository.buscarPorNome(pessoa.getNome());
+    public Pessoa cadastrar(Pessoa pessoa) {
+        Optional<Pessoa> pessoaExistente = this.pessoaRepository.buscarPorNome(pessoa.getNome());
         if (pessoaExistente.isPresent()) {
             System.err.println("Pessoa já cadastrada.");
         } else {
@@ -27,7 +27,7 @@ public class PessoaServiceImpl<T extends Pessoa> implements PessoaService<T> {
     }
 
     @Override
-    public T alterar(T pessoa) {
+    public Pessoa alterar(Pessoa pessoa) {
         try {
             return this.pessoaRepository.alterar(pessoa);
         } catch (Exception e) {
@@ -37,8 +37,8 @@ public class PessoaServiceImpl<T extends Pessoa> implements PessoaService<T> {
     }
 
     @Override
-    public T buscarPorNome(String nome) {
-        Optional<T> pessoaEncontrada = this.pessoaRepository.buscarPorNome(nome);
+    public Pessoa buscarPorNome(String nome) {
+        Optional<Pessoa> pessoaEncontrada = this.pessoaRepository.buscarPorNome(nome);
         if (pessoaEncontrada.isPresent()) {
             return pessoaEncontrada.get();
         } else {
@@ -48,12 +48,12 @@ public class PessoaServiceImpl<T extends Pessoa> implements PessoaService<T> {
     }
 
     @Override
-    public List<T> listar() {
+    public List<Pessoa> listar() {
         return this.pessoaRepository.todos();
     }
 
     @Override
-    public void remover(T pessoa) {
+    public void remover(Pessoa pessoa) {
         this.pessoaRepository.remover(pessoa);
     }
 }

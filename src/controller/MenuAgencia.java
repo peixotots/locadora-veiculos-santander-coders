@@ -6,12 +6,11 @@ import model.agencia.Agencia;
 import service.AgenciaService;
 import service.AgenciaServiceImpl;
 import util.Util;
-
 import java.util.List;
 
-public class MenuAgencia<T> extends Menu {
+public class MenuAgencia extends Menu {
 
-    private final AgenciaService<T> agenciaService = new AgenciaServiceImpl<>();
+    private final AgenciaService agenciaService = new AgenciaServiceImpl();
 
     @Override
     public void selecionaOpcao() {
@@ -38,13 +37,13 @@ public class MenuAgencia<T> extends Menu {
                                 System.err.println("Identificador inválido. Por favor, digite um identificador válido (código numérico).");
                             }
                         }
-                        Agencia<T> agencia = new Agencia<>(nome, endereco, identificador);
-                        agenciaService.cadastrar((T) agencia);
+                        Agencia agencia = new Agencia(nome, endereco, identificador);
+                        agenciaService.cadastrar(agencia);
                         System.out.println("Agência cadastrada com sucesso!");
                         break;
                     case 2:
                         String termoBusca = Util.lerTexto("Digite parte do nome ou do endereço: ");
-                        List<T> agenciasEncontradas = agenciaService.buscarPorNomeOuEndereco(termoBusca);
+                        List<Agencia> agenciasEncontradas = agenciaService.buscarPorNomeOuEndereco(termoBusca);
                         if (!agenciasEncontradas.isEmpty()) {
                             agenciasEncontradas.forEach(System.out::println);
                         } else {
@@ -63,16 +62,23 @@ public class MenuAgencia<T> extends Menu {
                             }
                         }
                         final int finalIdAlterar = idAlterar;
-                        Agencia<T> agenciaAlterar = (Agencia<T>) agenciaService.listar().stream()
-                                .filter(a -> ((Agencia<?>) a).getIdentificador() == finalIdAlterar)
+
+
+                        List<Agencia> agenciasListadas = agenciaService.listar();
+
+                        Agencia agenciaAlterar = agenciasListadas.stream()
+                                .filter(a -> a.getIdentificador() == finalIdAlterar)
                                 .findFirst()
                                 .orElse(null);
+
+
+
                         if (agenciaAlterar != null) {
                             String novoNome = Util.lerTexto("Digite o novo nome da agência: ");
                             String novoEndereco = Util.lerTexto("Digite o novo endereço da agência: ");
                             agenciaAlterar.setNome(novoNome);
                             agenciaAlterar.setEndereco(novoEndereco);
-                            agenciaService.alterar((T) agenciaAlterar);
+                            agenciaService.alterar(agenciaAlterar);
                             System.out.println("Agência alterada com sucesso!");
                         } else {
                             System.err.println("Agência não encontrada.");

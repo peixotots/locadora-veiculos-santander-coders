@@ -2,14 +2,16 @@ package service;
 
 import model.aluguel.Aluguel;
 import repository.AluguelRepository;
+import repository.AluguelRepositoryImpl;
+
 import java.time.LocalDate;
 
-public class AluguelServiceImpl<T extends Aluguel> implements AluguelService<T> {
+public class AluguelServiceImpl implements AluguelService{
 
-    private AluguelRepository<T> aluguelRepository;
+    private AluguelRepositoryImpl aluguelRepository = AluguelRepositoryImpl.getInstancia();
 
     @Override
-    public void criarAluguel(T aluguel) {
+    public void criarAluguel(Aluguel aluguel) {
         aluguelRepository.salvar(aluguel);
         aluguel.getVeiculo().setDisponivel(false);
     }
@@ -26,6 +28,6 @@ public class AluguelServiceImpl<T extends Aluguel> implements AluguelService<T> 
 
     @Override
     public Aluguel salvar(Aluguel aluguel) {
-        return aluguelRepository.salvar((T) aluguel);
+        return aluguelRepository.salvar(aluguel);
     }
 }

@@ -5,10 +5,10 @@ import model.pessoa.Pessoa;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class PessoaRepository<T extends Pessoa> {
-    public abstract T salvar(T pessoa);
-    public abstract List<T> todos();
-    public abstract T alterar(T pessoa);
-    public abstract Optional<T> buscarPorNome(String nome);
-    public abstract void remover(T pessoa);
+public abstract class PessoaRepository{
+    public abstract Pessoa salvar(Pessoa pessoa);
+    public abstract List<Pessoa> todos();
+    public abstract Pessoa alterar(Pessoa pessoa);
+    public abstract Optional<Pessoa> buscarPorNome(String nome);
+    public abstract void remover(Pessoa pessoa);
 }

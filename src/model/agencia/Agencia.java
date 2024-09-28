@@ -1,14 +1,16 @@
 package model.agencia;
 
+import model.veiculo.Veiculo;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Agencia<T> {
+public class Agencia {
 
     String nome;
     String endereco;
     int identificador;
-    List<T> veiculos;
+    List<Veiculo> veiculos;
 
     public Agencia(String nome, String endereco, int identificador) {
         this.nome = nome;

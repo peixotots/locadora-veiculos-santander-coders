@@ -17,14 +17,14 @@ public class MenuAluguel extends Menu {
     private PessoaService pessoaService = new PessoaServiceImpl();
     private VeiculoService veiculoService = new VeiculoServiceImpl();
     private AgenciaService agenciaService = new AgenciaServiceImpl();
-    private final AluguelService<Aluguel> aluguelService = new AluguelServiceImpl<>();
+    private final AluguelService aluguelService = new AluguelServiceImpl();
 
     int opcaoSelecionada;
 
     @Override
 
     public void selecionaOpcao() throws OpcaoInvalidaException {
-        String menu = Menu.geraMenuComOpcoes("Aluguel", List.of("1-Aluguel para pessoa fisica", "2-Aluguel para pessoa juridica", "3-Devolução", "4-Sair"));
+        String menu = Menu.geraMenuComOpcoes("Aluguel", List.of("Aluguel para pessoa fisica", "Aluguel para pessoa juridica", "Devolução", "Sair"));
 
         try {
             do {
