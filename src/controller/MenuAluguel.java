@@ -16,7 +16,6 @@ import java.util.List;
 public class MenuAluguel extends Menu {
     private PessoaService pessoaService = new PessoaServiceImpl();
     private VeiculoService veiculoService = new VeiculoServiceImpl();
-    private AluguelServiceImpl aluguelServiceImpl = new AluguelServiceImpl();
     private AgenciaService agenciaService = new AgenciaServiceImpl();
     private final AluguelService<Aluguel> aluguelService = new AluguelServiceImpl<>();
 
@@ -25,7 +24,7 @@ public class MenuAluguel extends Menu {
     @Override
 
     public void selecionaOpcao() throws OpcaoInvalidaException {
-        String menu = Menu.geraMenuComOpcoes("Aluguel", List.of("1-Aluguel para pessoa fisica", "2-Aluguel para pessoa juridica", "3-Sair"));
+        String menu = Menu.geraMenuComOpcoes("Aluguel", List.of("1-Aluguel para pessoa fisica", "2-Aluguel para pessoa juridica", "3-Devolução", "4-Sair"));
 
         try {
             do {
@@ -45,9 +44,9 @@ public class MenuAluguel extends Menu {
                             String veiculoEscolhido = Util.lerTexto("Digite a placa do Veículo: ");
                             Veiculo veiculo = veiculoService.buscarPorPlaca(veiculoEscolhido);
 
-                            LocalDate dataInicial = aluguelServiceImpl.definirDataInicial();
+                            LocalDate dataInicial = aluguelService.definirDataInicial();
                             int quantidadeDias = Util.lerNumeroInteiro("Digite a quantidade de dias que você deseja alugar o veículo: ");
-                            LocalDate dataDevolucaoPrevista = aluguelServiceImpl.definirDataDeDevolucaoPrevista(dataInicial, quantidadeDias);
+                            LocalDate dataDevolucaoPrevista = aluguelService.definirDataDeDevolucaoPrevista(dataInicial, quantidadeDias);
 
                             Aluguel aluguel = new Aluguel(cliente, agencia, veiculo, dataInicial.atStartOfDay(), dataDevolucaoPrevista.atStartOfDay());
                             aluguelService.criarAluguel(aluguel);
@@ -64,10 +63,13 @@ public class MenuAluguel extends Menu {
                         break;
 
                     case 3:
+                        // devol
+                        break;
+                    case 4:
                         System.out.println("Saindo do menu de Aluguel...");
                         break;
                 }
-            } while (opcaoSelecionada != 3);
+            } while (opcaoSelecionada != 4);
 
         } catch (OpcaoInvalidaException e) {
             System.err.println(e.getMessage());

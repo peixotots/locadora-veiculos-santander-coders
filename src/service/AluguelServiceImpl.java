@@ -1,39 +1,31 @@
 package service;
 
 import model.aluguel.Aluguel;
+import repository.AluguelRepository;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AluguelServiceImpl<T extends Aluguel> implements AluguelService<T> {
-    private final List<T> alugueis = new ArrayList<>();
+
+    private AluguelRepository<T> aluguelRepository;
 
     @Override
     public void criarAluguel(T aluguel) {
-        alugueis.add(aluguel);
+        aluguelRepository.salvar(aluguel);
         aluguel.getVeiculo().setDisponivel(false);
     }
 
     @Override
     public LocalDate definirDataInicial() {
-        LocalDate dataInicial = LocalDate.now();
-        return formatarData(dataInicial);
+        return aluguelRepository.definirDataInicial();
     }
 
     @Override
     public LocalDate definirDataDeDevolucaoPrevista(LocalDate dataInicial, int quantidadeDias) {
-        return dataInicial.plusDays(quantidadeDias);
+        return aluguelRepository.definirDataDeDevolucaoPrevista(dataInicial, quantidadeDias);
     }
 
     @Override
-    public List<T> getAlugueis() {
-        return alugueis;
-    }
-
-    private LocalDate formatarData(LocalDate data) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dataFormatada = data.format(formatter);
-        return LocalDate.parse(dataFormatada, formatter);
+    public Aluguel salvar(Aluguel aluguel) {
+        return aluguelRepository.salvar((T) aluguel);
     }
 }
