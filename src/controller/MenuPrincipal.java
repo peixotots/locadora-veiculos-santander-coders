@@ -8,7 +8,7 @@ import java.util.List;
 public class MenuPrincipal extends Menu {
     @Override
     public void selecionaOpcao() throws OpcaoInvalidaException {
-        String menu = Menu.geraMenuComOpcoes("LOCADORA DE VEÍCULOS", List.of("Cadastro de veículos", "Cadastro de agências", "Cadastro de clientes", "Aluguéis", "Devolução", "Sair"));
+        String menu = Menu.geraMenuComOpcoes("LOCADORA DE VEÍCULOS", List.of("Cadastro de veículos", "Cadastro de agências", "Cadastro de clientes", "Alugueis", "Devolução", "Sair"));
 
         int opcaoSelecionada = 0;
 
