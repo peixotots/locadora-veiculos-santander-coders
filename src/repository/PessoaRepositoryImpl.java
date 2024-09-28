@@ -1,6 +1,7 @@
 package repository;
 
 import model.pessoa.Pessoa;
+import model.veiculo.Veiculo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +9,18 @@ import java.util.Optional;
 
 public class PessoaRepositoryImpl extends PessoaRepository{
 
-    public static List<Pessoa> bancoDadosPessoa;
+    private static PessoaRepositoryImpl instancia;
+    private List<Pessoa> bancoDadosPessoa;
 
-    public PessoaRepositoryImpl() {
+    private PessoaRepositoryImpl() {
         bancoDadosPessoa = new ArrayList<>();
+    }
+
+    public static PessoaRepositoryImpl getInstancia() {
+        if (instancia == null) {
+            instancia = new PessoaRepositoryImpl();
+        }
+        return instancia;
     }
 
     @Override

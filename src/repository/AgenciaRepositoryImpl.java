@@ -9,10 +9,18 @@ import java.util.stream.Collectors;
 
 public class AgenciaRepositoryImpl extends AgenciaRepository{
 
-    private static List<Agencia> bancoDadosAgencia;
+    private static AgenciaRepositoryImpl instancia;
+    private List<Agencia> bancoDadosAgencia;
 
-    public AgenciaRepositoryImpl() {
+    private AgenciaRepositoryImpl() {
         bancoDadosAgencia = new ArrayList<>();
+    }
+
+    public static AgenciaRepositoryImpl getInstancia() {
+        if (instancia == null) {
+            instancia = new AgenciaRepositoryImpl();
+        }
+        return instancia;
     }
 
     @Override

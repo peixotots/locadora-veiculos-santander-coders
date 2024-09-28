@@ -2,11 +2,13 @@ package service;
 
 import model.aluguel.Aluguel;
 import repository.AluguelRepository;
+import repository.AluguelRepositoryImpl;
+
 import java.time.LocalDate;
 
 public class AluguelServiceImpl implements AluguelService{
 
-    private AluguelRepository aluguelRepository;
+    private AluguelRepositoryImpl aluguelRepository = AluguelRepositoryImpl.getInstancia();
 
     @Override
     public void criarAluguel(Aluguel aluguel) {

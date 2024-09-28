@@ -11,7 +11,7 @@ public class AgenciaServiceImpl implements AgenciaService {
     private final AgenciaRepository agenciaRepository;
 
     public AgenciaServiceImpl() {
-        this.agenciaRepository = new AgenciaRepositoryImpl();
+        this.agenciaRepository = AgenciaRepositoryImpl.getInstancia();
     }
 
     @Override

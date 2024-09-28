@@ -1,5 +1,6 @@
 package repository;
 import model.aluguel.Aluguel;
+import model.pessoa.Pessoa;
 import service.AluguelService;
 
 import java.time.LocalDate;
@@ -7,14 +8,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AluguelRepositoryImpl implements AluguelService {
+public class AluguelRepositoryImpl extends AluguelRepository {
 
-    public static List<Aluguel> bancoDados;
+    private static AluguelRepositoryImpl instancia;
+    private List<Aluguel> bancoDados;
 
-    @Override
-    public void criarAluguel(Aluguel aluguel) {
-       bancoDados = new ArrayList<>();
+    private AluguelRepositoryImpl() {
+        bancoDados = new ArrayList<>();
     }
+
+    public static AluguelRepositoryImpl getInstancia() {
+        if (instancia == null) {
+            instancia = new AluguelRepositoryImpl();
+        }
+        return instancia;
+    }
+
+
     @Override
     public LocalDate definirDataInicial() {
         LocalDate dataInicial = LocalDate.now();

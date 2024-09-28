@@ -12,7 +12,7 @@ public class PessoaServiceImpl implements PessoaService{
     private final PessoaRepository pessoaRepository;
 
     public PessoaServiceImpl() {
-        this.pessoaRepository = new PessoaRepositoryImpl();
+        this.pessoaRepository = PessoaRepositoryImpl.getInstancia();
     }
 
     @Override
