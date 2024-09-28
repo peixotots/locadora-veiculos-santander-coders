@@ -1,12 +1,10 @@
 package service;
 
-import model.agencia.Agencia;
-
 import java.util.List;
 
-public interface AgenciaService {
-    Agencia cadastrar(Agencia agencia);
-    List<Agencia> buscarPorNomeOuEndereco(String termo); // Modified to return a list
-    List<Agencia> listar();
-    Agencia alterar(Agencia agencia);
+public interface AgenciaService<T> {
+    T cadastrar(T agencia);
+    List<T> buscarPorNomeOuEndereco(String termo);
+    List<T> listar();
+    T alterar(T agencia);
 }

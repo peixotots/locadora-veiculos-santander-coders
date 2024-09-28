@@ -1,5 +1,6 @@
 package controller;
 
+import model.exception.DadoInvalidoException;
 import model.exception.OpcaoInvalidaException;
 import model.agencia.Agencia;
 import service.AgenciaService;
@@ -8,9 +9,9 @@ import util.Util;
 
 import java.util.List;
 
-public class MenuAgencia extends Menu {
+public class MenuAgencia<T> extends Menu {
 
-    private final AgenciaService agenciaService = new AgenciaServiceImpl();
+    private final AgenciaService<T> agenciaService = new AgenciaServiceImpl<>();
 
     @Override
     public void selecionaOpcao() {
@@ -37,13 +38,13 @@ public class MenuAgencia extends Menu {
                                 System.err.println("Identificador inválido. Por favor, digite um identificador válido (código numérico).");
                             }
                         }
-                        Agencia agencia = new Agencia(nome, endereco, identificador);
-                        agenciaService.cadastrar(agencia);
+                        Agencia<T> agencia = new Agencia<>(nome, endereco, identificador);
+                        agenciaService.cadastrar((T) agencia);
                         System.out.println("Agência cadastrada com sucesso!");
                         break;
                     case 2:
                         String termoBusca = Util.lerTexto("Digite parte do nome ou do endereço: ");
-                        List<Agencia> agenciasEncontradas = agenciaService.buscarPorNomeOuEndereco(termoBusca);
+                        List<T> agenciasEncontradas = agenciaService.buscarPorNomeOuEndereco(termoBusca);
                         if (!agenciasEncontradas.isEmpty()) {
                             agenciasEncontradas.forEach(System.out::println);
                         } else {
@@ -61,9 +62,9 @@ public class MenuAgencia extends Menu {
                                 System.err.println("Identificador inválido. Por favor, digite um identificador válido (código numérico).");
                             }
                         }
-                        final int finalIdAlterar = idAlterar; // Make idAlterar effectively final
-                        Agencia agenciaAlterar = agenciaService.listar().stream()
-                                .filter(a -> a.getIdentificador() == finalIdAlterar)
+                        final int finalIdAlterar = idAlterar;
+                        Agencia<T> agenciaAlterar = (Agencia<T>) agenciaService.listar().stream()
+                                .filter(a -> ((Agencia<?>) a).getIdentificador() == finalIdAlterar)
                                 .findFirst()
                                 .orElse(null);
                         if (agenciaAlterar != null) {
@@ -71,7 +72,7 @@ public class MenuAgencia extends Menu {
                             String novoEndereco = Util.lerTexto("Digite o novo endereço da agência: ");
                             agenciaAlterar.setNome(novoNome);
                             agenciaAlterar.setEndereco(novoEndereco);
-                            agenciaService.alterar(agenciaAlterar);
+                            agenciaService.alterar((T) agenciaAlterar);
                             System.out.println("Agência alterada com sucesso!");
                         } else {
                             System.err.println("Agência não encontrada.");
@@ -84,9 +85,9 @@ public class MenuAgencia extends Menu {
                         throw new OpcaoInvalidaException();
                 }
             } catch (OpcaoInvalidaException e) {
-                System.err.println(e.getMessage());
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+                System.err.println("Opção inválida! Por favor, digite uma opção válida.");
+            } catch (DadoInvalidoException e) {
+                System.err.println("Dado inválido! " + e.getMessage());
             }
         } while (opcaoSelecionada != 4);
     }

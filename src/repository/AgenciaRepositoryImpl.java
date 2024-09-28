@@ -1,26 +1,22 @@
 package repository;
 
-import model.agencia.Agencia;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class AgenciaRepositoryImpl extends AgenciaRepository {
+public class AgenciaRepositoryImpl<T> extends AgenciaRepository<T> {
 
-    private final List<Agencia> bancoDadosAgencia;
+    private final List<T> bancoDadosAgencia;
 
     public AgenciaRepositoryImpl() {
         this.bancoDadosAgencia = new ArrayList<>();
     }
 
     @Override
-    public Agencia salvar(Agencia agencia) {
-        Optional<Agencia> agenciaExistente = bancoDadosAgencia.stream()
-                .filter(a -> a.getNome().equals(agencia.getNome()) &&
-                             a.getEndereco().equals(agencia.getEndereco()) &&
-                             a.getIdentificador() == agencia.getIdentificador())
+    public T salvar(T agencia) {
+        Optional<T> agenciaExistente = bancoDadosAgencia.stream()
+                .filter(a -> a.equals(agencia))
                 .findFirst();
 
         if (agenciaExistente.isPresent()) {
@@ -33,28 +29,26 @@ public class AgenciaRepositoryImpl extends AgenciaRepository {
     }
 
     @Override
-    public List<Agencia> todos() {
+    public List<T> todos() {
         return bancoDadosAgencia;
     }
 
     @Override
-    public List<Agencia> buscarPorNomeOuEndereco(String termo) {
+    public List<T> buscarPorNomeOuEndereco(String termo) {
         return bancoDadosAgencia.stream()
-                .filter(agencia -> agencia.getNome().contains(termo) || agencia.getEndereco().contains(termo))
+                .filter(agencia -> agencia.toString().contains(termo))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Agencia alterar(Agencia agencia) {
-        Optional<Agencia> optionalAgencia = bancoDadosAgencia.stream()
-                .filter(a -> a.getIdentificador() == agencia.getIdentificador())
+    public T alterar(T agencia) {
+        Optional<T> optionalAgencia = bancoDadosAgencia.stream()
+                .filter(a -> a.equals(agencia))
                 .findFirst();
         if (optionalAgencia.isPresent()) {
-            Agencia agenciaBD = optionalAgencia.get();
+            T agenciaBD = optionalAgencia.get();
             int index = bancoDadosAgencia.indexOf(agenciaBD);
-            agenciaBD.setNome(agencia.getNome());
-            agenciaBD.setEndereco(agencia.getEndereco());
-            bancoDadosAgencia.set(index, agenciaBD);
+            bancoDadosAgencia.set(index, agencia);
             return agenciaBD;
         } else {
             System.err.println("Agência não encontrada.");

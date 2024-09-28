@@ -1,36 +1,35 @@
 package service;
 
-import model.agencia.Agencia;
 import repository.AgenciaRepository;
 import repository.AgenciaRepositoryImpl;
 
 import java.util.List;
 
-public class AgenciaServiceImpl implements AgenciaService {
+public class AgenciaServiceImpl<T> implements AgenciaService<T> {
 
-    private final AgenciaRepository agenciaRepository;
+    private final AgenciaRepository<T> agenciaRepository;
 
     public AgenciaServiceImpl() {
-        this.agenciaRepository = new AgenciaRepositoryImpl();
+        this.agenciaRepository = new AgenciaRepositoryImpl<>();
     }
 
     @Override
-    public Agencia cadastrar(Agencia agencia) {
+    public T cadastrar(T agencia) {
         return this.agenciaRepository.salvar(agencia);
     }
 
     @Override
-    public List<Agencia> buscarPorNomeOuEndereco(String termo) {
+    public List<T> buscarPorNomeOuEndereco(String termo) {
         return this.agenciaRepository.buscarPorNomeOuEndereco(termo);
     }
 
     @Override
-    public List<Agencia> listar() {
+    public List<T> listar() {
         return this.agenciaRepository.todos();
     }
 
     @Override
-    public Agencia alterar(Agencia agencia) {
+    public T alterar(T agencia) {
         return this.agenciaRepository.alterar(agencia);
     }
 }

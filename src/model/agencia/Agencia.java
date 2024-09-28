@@ -1,16 +1,14 @@
 package model.agencia;
 
-import model.veiculo.Veiculo;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Agencia {
+public class Agencia<T> {
 
     String nome;
     String endereco;
     int identificador;
-    List<Veiculo> veiculos;
+    List<T> veiculos;
 
     public Agencia(String nome, String endereco, int identificador) {
         this.nome = nome;
@@ -37,18 +35,6 @@ public class Agencia {
 
     public int getIdentificador() {
         return identificador;
-    }
-
-    public void setIdentificador(int identificador) {
-        this.identificador = identificador;
-    }
-
-    public List<Veiculo> getVeiculos() {
-        return veiculos;
-    }
-
-    public void setVeiculos(List<Veiculo> veiculos) {
-        this.veiculos = veiculos;
     }
 
     @Override
