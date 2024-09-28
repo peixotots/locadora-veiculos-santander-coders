@@ -45,7 +45,8 @@ public class PessoaRepositoryImpl<T extends Pessoa> extends PessoaRepository<T> 
     public Optional<T> buscarPorNome(String nome) {
         return this.bancoDadosPessoa
                 .stream()
-                .filter(pessoa -> pessoa.getNome().contains(nome)).findFirst();
+                .filter(pessoa -> pessoa.getNome().equalsIgnoreCase(nome))
+                .findFirst();
     }
 
     @Override

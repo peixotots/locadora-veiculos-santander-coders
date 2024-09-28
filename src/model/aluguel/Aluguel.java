@@ -6,14 +6,19 @@ import model.veiculo.Veiculo;
 import java.time.LocalDateTime;
 
 public class Aluguel {
-
     protected Pessoa cliente;
     protected Agencia agencia;
     protected Veiculo veiculo;
     protected LocalDateTime dataInicio;
     protected LocalDateTime dataDevolucaoPrevista;
-    protected LocalDateTime dataDevolucaoFinal;
-    protected Boolean devolvido;
+
+    public Aluguel(Pessoa cliente, Agencia agencia, Veiculo veiculo, LocalDateTime dataInicio, LocalDateTime dataDevolucaoPrevista) {
+        this.cliente = cliente;
+        this.agencia = agencia;
+        this.veiculo = veiculo;
+        this.dataInicio = dataInicio;
+        this.dataDevolucaoPrevista = dataDevolucaoPrevista;
+    }
 
     public Pessoa getCliente() {
         return cliente;
