@@ -15,7 +15,7 @@ public class Util {
         System.out.println(pergunta);
         String texto = entrada.nextLine();
         while (texto.isEmpty()){
-            System.err.println("Entrada inválida. Digite texto válido.");
+            System.err.println("Entrada inválida. Digite um texto válido.");
             texto = entrada.nextLine();
         }
         return texto;
