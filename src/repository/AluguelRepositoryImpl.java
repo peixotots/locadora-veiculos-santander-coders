@@ -7,9 +7,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AluguelRepositoryImpl<T extends Aluguel> implements AluguelService {
+public class AluguelRepositoryImpl implements AluguelService {
 
-    public List<T> bancoDados;
+    public static List<Aluguel> bancoDados;
 
     @Override
     public void criarAluguel(Aluguel aluguel) {
@@ -28,7 +28,7 @@ public class AluguelRepositoryImpl<T extends Aluguel> implements AluguelService 
 
     @Override
     public Aluguel salvar(Aluguel aluguel) {
-        bancoDados.add((T) aluguel);
+        bancoDados.add((Aluguel) aluguel);
         return aluguel;
     }
 

@@ -1,21 +1,23 @@
 package repository;
 
+import model.agencia.Agencia;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class AgenciaRepositoryImpl<T> extends AgenciaRepository<T> {
+public class AgenciaRepositoryImpl extends AgenciaRepository{
 
-    private final List<T> bancoDadosAgencia;
+    private static List<Agencia> bancoDadosAgencia;
 
     public AgenciaRepositoryImpl() {
-        this.bancoDadosAgencia = new ArrayList<>();
+        bancoDadosAgencia = new ArrayList<>();
     }
 
     @Override
-    public T salvar(T agencia) {
-        Optional<T> agenciaExistente = bancoDadosAgencia.stream()
+    public Agencia salvar(Agencia agencia) {
+        Optional<Agencia> agenciaExistente = bancoDadosAgencia.stream()
                 .filter(a -> a.equals(agencia))
                 .findFirst();
 
@@ -29,24 +31,24 @@ public class AgenciaRepositoryImpl<T> extends AgenciaRepository<T> {
     }
 
     @Override
-    public List<T> todos() {
+    public List<Agencia> todos() {
         return bancoDadosAgencia;
     }
 
     @Override
-    public List<T> buscarPorNomeOuEndereco(String termo) {
+    public List<Agencia> buscarPorNomeOuEndereco(String termo) {
         return bancoDadosAgencia.stream()
                 .filter(agencia -> agencia.toString().contains(termo))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public T alterar(T agencia) {
-        Optional<T> optionalAgencia = bancoDadosAgencia.stream()
+    public Agencia alterar(Agencia agencia) {
+        Optional<Agencia> optionalAgencia = bancoDadosAgencia.stream()
                 .filter(a -> a.equals(agencia))
                 .findFirst();
         if (optionalAgencia.isPresent()) {
-            T agenciaBD = optionalAgencia.get();
+            Agencia agenciaBD = optionalAgencia.get();
             int index = bancoDadosAgencia.indexOf(agenciaBD);
             bancoDadosAgencia.set(index, agencia);
             return agenciaBD;

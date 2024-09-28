@@ -18,7 +18,7 @@ public abstract class Menu {
         int contador = 1;
         StringBuilder opcoesConcatenadas = new StringBuilder();
 
-        int largura = tituloMenu.length() + 25;
+        int largura = tituloMenu.length() + 29;
 
         String bordaTopo = "╔" + "═".repeat(largura) + "╗";
         String linhaCentral = "╠" + "═".repeat(largura) + "╣";

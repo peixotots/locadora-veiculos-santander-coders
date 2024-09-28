@@ -6,34 +6,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class PessoaRepositoryImpl<T extends Pessoa> extends PessoaRepository<T> {
+public class PessoaRepositoryImpl extends PessoaRepository{
 
-    public List<T> bancoDadosPessoa;
+    public static List<Pessoa> bancoDadosPessoa;
 
     public PessoaRepositoryImpl() {
         bancoDadosPessoa = new ArrayList<>();
     }
 
     @Override
-    public T salvar(T pessoa) {
+    public Pessoa salvar(Pessoa pessoa) {
         bancoDadosPessoa.add(pessoa);
         return pessoa;
     }
 
     @Override
-    public List<T> todos() {
+    public List<Pessoa> todos() {
         return bancoDadosPessoa;
     }
 
     @Override
-    public T alterar(T pessoa) {
-        Optional<T> optionalPessoa = this.buscarPorNome(pessoa.getNome());
+    public Pessoa alterar(Pessoa pessoa) {
+        Optional<Pessoa> optionalPessoa = this.buscarPorNome(pessoa.getNome());
         if (optionalPessoa.isPresent()) {
-            T pessoaBD = optionalPessoa.get();
-            int index = this.bancoDadosPessoa.indexOf(pessoaBD);
+            Pessoa pessoaBD = optionalPessoa.get();
+            int index = bancoDadosPessoa.indexOf(pessoaBD);
             pessoaBD.setEndereco(pessoa.getEndereco());
             pessoaBD.setTelefone(pessoa.getTelefone());
-            this.bancoDadosPessoa.set(index, pessoaBD);
+            bancoDadosPessoa.set(index, pessoaBD);
             return pessoaBD;
         } else {
             System.err.println("Pessoa não encontrada.");
@@ -42,15 +42,15 @@ public class PessoaRepositoryImpl<T extends Pessoa> extends PessoaRepository<T> 
     }
 
     @Override
-    public Optional<T> buscarPorNome(String nome) {
-        return this.bancoDadosPessoa
+    public Optional<Pessoa> buscarPorNome(String nome) {
+        return bancoDadosPessoa
                 .stream()
                 .filter(pessoa -> pessoa.getNome().equalsIgnoreCase(nome))
                 .findFirst();
     }
 
     @Override
-    public void remover(T pessoa) {
+    public void remover(Pessoa pessoa) {
         if (bancoDadosPessoa.contains(pessoa)) {
             bancoDadosPessoa.remove(pessoa);
             System.out.println("Pessoa removida com sucesso.");

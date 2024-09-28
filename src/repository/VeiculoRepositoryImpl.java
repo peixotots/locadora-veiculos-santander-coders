@@ -7,41 +7,49 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class VeiculoRepositoryImpl<T extends Veiculo> extends VeiculoRepository<T> {
+public class VeiculoRepositoryImpl extends VeiculoRepository {
 
-    public List<T> bancoDadosVeiculo;
+    private static VeiculoRepositoryImpl instancia;
+    private List<Veiculo> bancoDadosVeiculo;
 
-    public VeiculoRepositoryImpl() {
+    private VeiculoRepositoryImpl() {
         bancoDadosVeiculo = new ArrayList<>();
     }
 
+    public static VeiculoRepositoryImpl getInstancia() {
+        if (instancia == null) {
+            instancia = new VeiculoRepositoryImpl();
+        }
+        return instancia;
+    }
+
     @Override
-    public T salvar(T veiculo) {
+    public Veiculo salvar(Veiculo veiculo) {
         bancoDadosVeiculo.add(veiculo);
         return veiculo;
     }
 
     @Override
-    public List<T> todos() {
+    public List<Veiculo> todos() {
         return bancoDadosVeiculo;
     }
 
     @Override
-    public T alterar(T veiculo) throws PlacaInvalidaException {
-        Optional<T> optionalVeiculo = this.buscarPor(veiculo.getPlaca());
+    public Veiculo alterar(Veiculo veiculo) throws PlacaInvalidaException {
+        Optional<Veiculo> optionalVeiculo = this.buscarPor(veiculo.getPlaca());
         if (optionalVeiculo.isPresent()) {
-            T veiculoBD = optionalVeiculo.get();
+            Veiculo veiculoBD = optionalVeiculo.get();
             int index = this.bancoDadosVeiculo.indexOf(veiculoBD);
             veiculoBD.setMarca(veiculo.getMarca());
             veiculoBD.setModelo(veiculo.getModelo());
-            this.bancoDadosVeiculo.set(index, veiculoBD);
+            bancoDadosVeiculo.set(index, veiculoBD);
             return veiculoBD;
         } else throw new PlacaInvalidaException();
     }
 
     @Override
-    public Optional<T> buscarPor(String placa) {
-        return this.bancoDadosVeiculo
+    public Optional<Veiculo> buscarPor(String placa) {
+        return bancoDadosVeiculo
                 .stream()
                 .filter(veiculo -> veiculo.getPlaca().contains(placa)).findFirst();
     }
