@@ -5,12 +5,12 @@ import model.veiculo.Veiculo;
 
 import java.util.List;
 
-public interface VeiculoService<T extends Veiculo> {
+public interface VeiculoService{
 
-    T cadastrar(T veiculo);
-    T alterar(T veiculo);
-    T buscarPorPlaca(String placa) throws PlacaInvalidaException;
-    List<T> listar();
-    void remover(T veiculo);
+    Veiculo cadastrar(Veiculo veiculo);
+    Veiculo alterar(Veiculo veiculo);
+    Veiculo buscarPorPlaca(String placa) throws PlacaInvalidaException;
+    List<Veiculo> listar();
+    void remover(Veiculo veiculo);
 
 }

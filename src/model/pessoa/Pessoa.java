@@ -11,7 +11,6 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
 
-    // Getters e Setters
     public String getNome() {
         return nome;
     }
@@ -35,9 +34,5 @@ public abstract class Pessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    // Método abstrato para gerar comprovante de aluguel/devolução
-    public abstract String gerarComprovanteAluguel();
-    public abstract String gerarComprovanteDevolucao();
 }
 

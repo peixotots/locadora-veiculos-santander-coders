@@ -4,7 +4,6 @@ import model.exception.DadoInvalidoException;
 import model.exception.OpcaoInvalidaException;
 import model.exception.PlacaInvalidaException;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Util {

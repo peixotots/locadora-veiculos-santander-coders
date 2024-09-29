@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class MenuPessoa extends Menu {
 
-    private final PessoaService<Pessoa> pessoaService = new PessoaServiceImpl<>();
+    private final PessoaService pessoaService = new PessoaServiceImpl();
 
     @Override
     public void selecionaOpcao() {

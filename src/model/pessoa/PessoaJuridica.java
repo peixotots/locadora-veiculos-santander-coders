@@ -18,15 +18,9 @@ public class PessoaJuridica extends Pessoa {
     }
 
     @Override
-    public String gerarComprovanteAluguel() {
-        // Implementação da geração de comprovante de aluguel para pessoa jurídica
-        return "Comprovante de Aluguel - Pessoa Jurídica: " + getNome() + ", CNPJ: " + cnpj;
-    }
-
-    @Override
-    public String gerarComprovanteDevolucao() {
-        // Implementação da geração de comprovante de devolução para pessoa jurídica
-        return "Comprovante de Devolução - Pessoa Jurídica: " + getNome() + ", CNPJ: " + cnpj;
+    public String toString() {
+        return "Pessoa Jurídica: " + getNome() +
+                "  cnpj= " + cnpj;
     }
 }
 

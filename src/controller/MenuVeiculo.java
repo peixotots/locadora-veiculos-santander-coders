@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class MenuVeiculo extends Menu {
 
-    private final VeiculoService<Veiculo> veiculoService = new VeiculoServiceImpl<>();
+    private final VeiculoService veiculoService = new VeiculoServiceImpl();
 
     @Override
     public void selecionaOpcao() {
