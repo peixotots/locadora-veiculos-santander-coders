@@ -31,7 +31,7 @@ Criar uma aplicação que gerencie o aluguel de veículos, onde cada item abaixo
 ## Regras de Negócio
 **RN1**: Os veículos não podem ser repetidos;
 
-**RN2:** Tipos de veículos que serão considerados: Carro, Moto, Caminhões;
+**RN2:** Tipos de veículos que serão considerados: carro, moto e caminhão;
 
 **RN3:** Os aluguéis e devoluções terão o local, data e horário;
 
@@ -53,7 +53,7 @@ Valores base da diária por tipo de veículo:
 | Carro           | R$ 150,00     |
 | Caminhão        | R$ 200,00     |
 
-## Principais classes
+## Principais Classes
 
 ```mermaid
 ---
@@ -156,6 +156,13 @@ classDiagram
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 ## Principais Desafios Encontrados no Projeto
+*Compreensão de Como Estruturar o Projeto:* Entender como estruturar o projeto, definir as classes e métodos necessários para construir a aplicação e integrar toda a estrutura para garantir que o programa funcione corretamente.
+
+*Aplicar Novos Conceitos:* Conseguir aplicar os novos conceitos que foram ensinados durante o módulo, como princípios SOLID, e construção de diagrama de classes.
+
+*Validação de Dados:* Garantir que os dados inseridos pelos usuários sejam válidos e estejam no formato correto, além de implementar validações para evitar duplicidade de agências, veículos e clientes.
+
+*Interface de Usuário:* Desenvolver uma interface de usuário intuitiva e fácil de usar para que os usuários possam realizar todas as operações necessárias.
 
 ## Integrantes
 <table align="center" style="width: 80%;">

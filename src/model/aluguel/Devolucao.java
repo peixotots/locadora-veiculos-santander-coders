@@ -51,8 +51,8 @@ public class Devolucao {
         System.out.println("Cliente: " + aluguel.cliente.getNome());
         System.out.println("Agência: " + aluguel.agencia.getNome());
         System.out.println("Veículo: " + aluguel.veiculo.getPlaca() + " | " + aluguel.veiculo.getModelo());
-        System.out.println("Data de inicio: " + aluguel.dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        System.out.println("Data da devolução: " + dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println("Data de inicio: " + aluguel.dataInicio.format(DateTimeFormatter.ofPattern("dd/mm/yyyy")));
+        System.out.println("Data da devolução: " + dataDevolucao.format(DateTimeFormatter.ofPattern("dd/mm/yyyy")));
         System.out.printf("Valor total a ser pago: R$ %.2f%n", valorFinalDoAluguel);
     }
 

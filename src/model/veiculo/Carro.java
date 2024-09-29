@@ -20,11 +20,11 @@ public class Carro extends Veiculo {
 
     @Override
     public String toString() {
-        return "CARRO: " +
-                "Valor: R$" + valor +
-                ", Placa: " + placa +
-                ", Modelo: " + modelo +
-                ", Marca: " + marca +
-                ", Está disponível? " + disponivel;
+        return "CARRO" +
+                "\nValor: R$" + valor +
+                "\nPlaca: " + placa +
+                "\nModelo: " + modelo +
+                "\nMarca: " + marca +
+                "\nEstá disponível? " + disponivel;
     }
 }

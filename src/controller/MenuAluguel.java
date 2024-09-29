@@ -105,15 +105,15 @@ public class MenuAluguel extends Menu {
                             }
                             Devolucao devolucao = new Devolucao(aluguel);
 
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
                             LocalDate dataFinal = null;
 
                             while (dataFinal == null) {
                                 try {
-                                    String inputDataDevolucao = Util.lerTexto("Digite a data da devolução (ex: dd/MM/yyyy): ");
+                                    String inputDataDevolucao = Util.lerTexto("Digite a data da devolução (ex: dd/mm/yyyy): ");
                                     dataFinal = LocalDate.parse(inputDataDevolucao, formatter);
                                 } catch (Exception e) {
-                                    System.out.println("Data inválida. Por favor, use o formato dd/MM/yyyy.");
+                                    System.out.println("Data inválida. Por favor, use o formato dd/mm/yyyy.");
                                 }
                             }
                             double valorTotalAluguel = devolucao.calcularDevolucao(dataFinal, tipoPessoa);

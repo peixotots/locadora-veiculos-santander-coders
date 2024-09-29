@@ -8,7 +8,6 @@ public class PessoaJuridica extends Pessoa {
         this.cnpj = cnpj;
     }
 
-    // Getter e Setter para CNPJ
     public String getCnpj() {
         return cnpj;
     }
@@ -20,7 +19,7 @@ public class PessoaJuridica extends Pessoa {
     @Override
     public String toString() {
         return "Pessoa Jurídica: " + getNome() +
-                "  cnpj= " + cnpj;
+                "\nCPF: " + cnpj;
     }
 }
 

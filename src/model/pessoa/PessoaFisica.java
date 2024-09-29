@@ -19,7 +19,7 @@ public class PessoaFisica extends Pessoa {
     @Override
     public String toString() {
         return "Pessoa Física: " + getNome() +
-                "  cpf= " + cpf;
+                "\nCPF: " + cpf;
     }
 }
 

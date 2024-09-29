@@ -15,12 +15,11 @@ public class Caminhao extends Veiculo {
 
     @Override
     public String toString() {
-        return "Caminhao{" +
-                "placa='" + placa + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", marca='" + marca + '\'' +
-                ", disponivel=" + disponivel +
-                ", valor=" + valor +
-                '}';
+        return "CAMINHÃO" +
+                "\nPlaca: " + placa +
+                "\nModelo: " + modelo +
+                "\nMarca: " + marca +
+                "\nDisponivel: " + disponivel +
+                "\nValor: R$" + valor;
     }
 }
