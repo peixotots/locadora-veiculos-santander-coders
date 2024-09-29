@@ -55,7 +55,97 @@ Valores base da diária por tipo de veículo:
 
 ## Principais classes
 
-```
+```mermaid
+---
+title: Principais classes
+---
+classDiagram
+
+    class Veiculo{
+        <<Abstract>>
+        #String placa
+        #String modelo
+        #String marca
+        #Boolean disponivel
+        #BigDecimal valor
+
+        +getters()
+        +setters()
+        +constructor()
+    }
+
+
+    class Carro{
+        +toString()
+    }
+    class Moto{
+        +toString()
+    }
+    class Caminhao{
+        +toString()
+    }
+
+    class Pessoa{
+        <<Abstract>>
+        -String nome
+        -String endereco
+        -String telefone
+
+        +getters()
+        +setters()
+    }
+
+    Pessoa <|-- PessoaFisica
+    Pessoa <|-- PessoaJuridica
+
+
+    class PessoaFisica {
+        -String cpf
+        +toString()
+    }
+
+    class PessoaJuridica {
+        -String cnpj
+        +toString()
+    }
+
+    class Agencia {
+        -String nome
+        -String endereco
+        -int identificador
+        -List~Veiculo~ veiculos
+        +getters()
+        +setters()
+        +constructor()
+        +toString()
+    }
+
+    class Aluguel {
+        #Pessoa cliente
+        #Agencia agencia
+        #Veiculo veiculo
+        #LocalDate dataInicio
+        #LocalDate dataDevolucaoPrevista
+
+        +imprimirComprovanteAluguel(int quantidadeDias, String tipoPessoa)
+        +getters()
+        +setters()
+        +constructor()
+    }
+
+    class Devolucao {
+        -Aluguel aluguel
+        +calcularDevolucao(LocalDate data, String tipoPessoa)
+    }
+
+    Veiculo <|-- Carro
+    Veiculo <|-- Moto
+    Veiculo <|-- Caminhao
+    Agencia o-- Veiculo : 0..*
+    Aluguel o-- Pessoa : 1
+    Aluguel o-- Agencia : 1
+    Aluguel o-- Veiculo : 1
+    Devolucao *-- Aluguel : 1
 
 ```
 
