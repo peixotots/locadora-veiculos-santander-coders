@@ -117,7 +117,7 @@ public class MenuAluguel extends Menu {
                                 }
                             }
                             double valorTotalAluguel = devolucao.calcularDevolucao(dataFinal, tipoPessoa);
-                            devolucao.imprimirComprovanteAluguel(tipoPessoa, dataFinal, valorTotalAluguel);
+                            devolucao.imprimirComprovanteDevolucao(tipoPessoa, dataFinal, valorTotalAluguel);
                             Veiculo veiculoAlugado = aluguel.getVeiculo();
                             devolucao.disponibilizarVeiculo(veiculoAlugado);
                             aluguelService.deletarAluguel(aluguel);

@@ -45,7 +45,7 @@ public class Devolucao {
     }
 
 
-    public void imprimirComprovanteAluguel(String tipoPessoa, LocalDate dataDevolucao, double valorFinalDoAluguel) {
+    public void imprimirComprovanteDevolucao(String tipoPessoa, LocalDate dataDevolucao, double valorFinalDoAluguel) {
         System.out.println("=== Comprovante de devolução ===");
         System.out.println("Tipo: Pessoa " + tipoPessoa);
         System.out.println("Cliente: " + aluguel.cliente.getNome());
