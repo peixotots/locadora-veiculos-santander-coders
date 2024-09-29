@@ -6,8 +6,6 @@ import model.veiculo.Moto;
 import model.veiculo.Veiculo;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
@@ -19,7 +17,7 @@ public class Devolucao {
         this.aluguel = aluguel;
     }
 
-    public void devolver(LocalDate data, String tipoPessoa) {
+    public double calcularDevolucao(LocalDate data, String tipoPessoa) {
         long quantidadeDeDias = ChronoUnit.DAYS.between(aluguel.getDataInicio(), data);
 
         double valorDiaria;
@@ -41,9 +39,21 @@ public class Devolucao {
         } else if (tipoPessoa.equalsIgnoreCase("juridica") && quantidadeDeDias > 3) {
             desconto = 0.10;
         }
-        double valorComDesconto = valorTotal * (1 - desconto);
+        double valorFinalDoAluguel = valorTotal * (1 - desconto);
 
-        System.out.printf("Valor total a ser pago: R$ %.2f%n", valorComDesconto);
+        return valorFinalDoAluguel;
+    }
+
+
+    public void imprimirComprovanteAluguel(String tipoPessoa, LocalDate dataDevolucao, double valorFinalDoAluguel) {
+        System.out.println("=== Comprovante de devolução ===");
+        System.out.println("Tipo: Pessoa " + tipoPessoa);
+        System.out.println("Cliente: " + aluguel.cliente.getNome());
+        System.out.println("Agência: " + aluguel.agencia.getNome());
+        System.out.println("Veículo: " + aluguel.veiculo.getPlaca() + " | " + aluguel.veiculo.getModelo());
+        System.out.println("Data de inicio: " + aluguel.dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println("Data da devolução: " + dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.printf("Valor total a ser pago: R$ %.2f%n", valorFinalDoAluguel);
     }
 
     public void disponibilizarVeiculo(Veiculo veiculo) {

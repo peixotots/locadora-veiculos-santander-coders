@@ -60,4 +60,13 @@ public class AluguelRepositoryImpl extends AluguelRepository {
             bancoDados.remove(aluguel);
         }
     }
+
+    @Override
+    public boolean verificarDisponibilidade(Veiculo veiculo) {
+        if(veiculo.getDisponivel() == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -37,7 +37,7 @@ public class MenuAluguel extends Menu {
                         try {
                             System.out.println("Aluguel");
 
-                            String tipoPessoa = Util.lerTexto("Deseja alugar para pessoa fisica ou juridica?").toLowerCase();
+                            String tipoPessoa = Util.lerTexto("Deseja alugar para pessoa física ou jurídica?").toLowerCase();
                             String nomeClienteParaAluguel = Util.lerTexto("Digite o nome da Pessoa: ");
                             Pessoa cliente = pessoaService.buscarPorNome(nomeClienteParaAluguel);
 
@@ -65,15 +65,26 @@ public class MenuAluguel extends Menu {
                                 agenciaSelecionada = agenciasEncontradas.get(opcao - 1);
                             }
 
-                            String veiculoEscolhido = Util.lerTexto("Digite a placa do Veículo: ");
-                            Veiculo veiculo = veiculoService.buscarPorPlaca(veiculoEscolhido);
+                            String veiculo;
+                            Veiculo veiculoEscolhido;
+                            boolean disponibilidade;
+
+                            do {
+                                veiculo = Util.lerTexto("Digite a placa do Veículo: ");
+                                veiculoEscolhido = veiculoService.buscarPorPlaca(veiculo);
+                                disponibilidade = aluguelService.verificarDisponibilidade(veiculoEscolhido);
+
+                                if (!disponibilidade) {
+                                    System.out.println("Esse veículo não está disponível. Tente outra placa.");
+                                }
+                            } while (!disponibilidade);
 
                             LocalDate dataInicial = aluguelService.definirDataInicial();
 
                             int quantidadeDias = Util.lerNumeroInteiro("Digite a quantidade de dias que você deseja alugar o veículo: ");
                             LocalDate dataDevolucaoPrevista = aluguelService.definirDataDeDevolucaoPrevista(dataInicial, quantidadeDias);
 
-                            Aluguel aluguel = new Aluguel(cliente, agenciaSelecionada, veiculo, dataInicial, dataDevolucaoPrevista);
+                            Aluguel aluguel = new Aluguel(cliente, agenciaSelecionada, veiculoEscolhido, dataInicial, dataDevolucaoPrevista);
                             aluguelService.criarAluguel(aluguel);
                             aluguel.imprimirComprovanteAluguel(quantidadeDias, tipoPessoa);
                         } catch (Exception e) {
@@ -99,16 +110,17 @@ public class MenuAluguel extends Menu {
 
                             while (dataFinal == null) {
                                 try {
-                                    String inputDataDevolucao = Util.lerTexto("Digite a data da devolução (ex: 03/10/2024): ");
+                                    String inputDataDevolucao = Util.lerTexto("Digite a data da devolução (ex: dd/MM/yyyy): ");
                                     dataFinal = LocalDate.parse(inputDataDevolucao, formatter);
                                 } catch (Exception e) {
                                     System.out.println("Data inválida. Por favor, use o formato dd/MM/yyyy.");
                                 }
                             }
-                            devolucao.devolver(dataFinal, tipoPessoa);
-
+                            double valorTotalAluguel = devolucao.calcularDevolucao(dataFinal, tipoPessoa);
+                            devolucao.imprimirComprovanteAluguel(tipoPessoa, dataFinal, valorTotalAluguel);
                             Veiculo veiculoAlugado = aluguel.getVeiculo();
                             devolucao.disponibilizarVeiculo(veiculoAlugado);
+                            aluguelService.deletarAluguel(aluguel);
                         } catch (Exception e) {
                             System.out.println("Ocorreu um erro: " + e.getMessage());
                         }

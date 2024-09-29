@@ -23,11 +23,11 @@ public class Aluguel {
     }
 
     public void imprimirComprovanteAluguel(int quantidadeDias, String tipoPessoa) {
-        System.out.println("=== Informações de aluguel ===");
+        System.out.println("=== Comprovante de aluguel ===");
         System.out.println("Tipo: Pessoa " + tipoPessoa);
         System.out.println("Cliente: " + cliente.getNome());
-        System.out.println("Agencia: " + agencia.getNome());
-        System.out.println("Veiculo: " + veiculo.getPlaca() + " | " + veiculo.getModelo());
+        System.out.println("Agência: " + agencia.getNome());
+        System.out.println("Veículo: " + veiculo.getPlaca() + " | " + veiculo.getModelo());
         System.out.println("Data de inicio: " + dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println("A quantidade de dias do aluguel é: " + quantidadeDias + " dias.");
     }
