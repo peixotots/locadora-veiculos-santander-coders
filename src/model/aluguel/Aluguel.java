@@ -23,7 +23,7 @@ public class Aluguel {
     }
 
     public void imprimirComprovanteAluguel(int quantidadeDias, String tipoPessoa) {
-        System.out.println("=== Informações do Cadastro ===");
+        System.out.println("=== Informações de aluguel ===");
         System.out.println("Tipo: Pessoa " + tipoPessoa);
         System.out.println("Cliente: " + cliente.getNome());
         System.out.println("Agencia: " + agencia.getNome());
