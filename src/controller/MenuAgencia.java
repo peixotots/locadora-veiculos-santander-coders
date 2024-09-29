@@ -1,7 +1,7 @@
 package controller;
 
-import model.exception.DadoInvalidoException;
-import model.exception.OpcaoInvalidaException;
+import exception.DadoInvalidoException;
+import exception.OpcaoInvalidaException;
 import model.agencia.Agencia;
 import service.AgenciaService;
 import service.AgenciaServiceImpl;

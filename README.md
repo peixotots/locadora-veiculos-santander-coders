@@ -11,7 +11,7 @@
 <b><span style="font-size: 18px;">Módulo 3: Programação Orientada a Objetos II</span></b><br>Projeto desenvolvido pelo grupo 5 da turma 1173 do programa <b>Santander Coders</b> 2024.1 em parceria com a <b>Ada Tech</b>
 </div>
 
-## Objetivo do Projeto
+## Objetivos do Projeto
 Criar uma aplicação que gerencie o aluguel de veículos, onde cada item abaixo seja considerado:
 - Cadastrar os veículos;
 - Alterar um veículo cadastrado;
@@ -52,6 +52,102 @@ Valores base da diária por tipo de veículo:
 | Moto            | R$ 100,00     |
 | Carro           | R$ 150,00     |
 | Caminhão        | R$ 200,00     |
+
+## Principais classes
+
+```mermaid
+---
+title: Principais classes
+---
+classDiagram
+
+    class Veiculo{
+        <<Abstract>>
+        #String placa
+        #String modelo
+        #String marca
+        #Boolean disponivel
+        #BigDecimal valor
+
+        +getters()
+        +setters()
+        +constructor()
+    }
+
+
+    class Carro{
+        +toString()
+    }
+    class Moto{
+        +toString()
+    }
+    class Caminhao{
+        +toString()
+    }
+
+    class Pessoa{
+        <<Abstract>>
+        -String nome
+        -String endereco
+        -String telefone
+
+        +getters()
+        +setters()
+    }
+
+    Pessoa <|-- PessoaFisica
+    Pessoa <|-- PessoaJuridica
+
+
+    class PessoaFisica {
+        -String cpf
+        +toString()
+    }
+
+    class PessoaJuridica {
+        -String cnpj
+        +toString()
+    }
+
+    class Agencia {
+        -String nome
+        -String endereco
+        -int identificador
+        -List~Veiculo~ veiculos
+        +getters()
+        +setters()
+        +constructor()
+        +toString()
+    }
+
+    class Aluguel {
+        #Pessoa cliente
+        #Agencia agencia
+        #Veiculo veiculo
+        #LocalDate dataInicio
+        #LocalDate dataDevolucaoPrevista
+
+        +imprimirComprovanteAluguel(int quantidadeDias, String tipoPessoa)
+        +getters()
+        +setters()
+        +constructor()
+    }
+
+    class Devolucao {
+        -Aluguel aluguel
+        +calcularDevolucao(LocalDate data, String tipoPessoa)
+    }
+
+    Veiculo <|-- Carro
+    Veiculo <|-- Moto
+    Veiculo <|-- Caminhao
+    Agencia o-- Veiculo : 0..*
+    Aluguel o-- Pessoa : 1
+    Aluguel o-- Agencia : 1
+    Aluguel o-- Veiculo : 1
+    Devolucao *-- Aluguel : 1
+
+```
 
 ## Linguagem
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)

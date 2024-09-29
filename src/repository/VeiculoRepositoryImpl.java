@@ -1,6 +1,6 @@
 package repository;
 
-import model.exception.PlacaInvalidaException;
+import exception.PlacaInvalidaException;
 import model.veiculo.Veiculo;
 
 import java.util.ArrayList;

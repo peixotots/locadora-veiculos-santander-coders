@@ -1,6 +1,6 @@
 package service;
 
-import model.exception.PlacaInvalidaException;
+import exception.PlacaInvalidaException;
 import model.veiculo.Veiculo;
 import repository.VeiculoRepository;
 import repository.VeiculoRepositoryImpl;

@@ -1,6 +1,6 @@
 package controller;
 
-import model.exception.OpcaoInvalidaException;
+import exception.OpcaoInvalidaException;
 import util.Util;
 
 import java.util.List;

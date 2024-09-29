@@ -1,8 +1,8 @@
 package util;
 
-import model.exception.DadoInvalidoException;
-import model.exception.OpcaoInvalidaException;
-import model.exception.PlacaInvalidaException;
+import exception.DadoInvalidoException;
+import exception.OpcaoInvalidaException;
+import exception.PlacaInvalidaException;
 
 import java.util.Scanner;
 
