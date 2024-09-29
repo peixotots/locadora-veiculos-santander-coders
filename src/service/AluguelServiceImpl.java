@@ -1,7 +1,6 @@
 package service;
 
 import model.aluguel.Aluguel;
-import repository.AluguelRepository;
 import repository.AluguelRepositoryImpl;
 
 import java.time.LocalDate;
@@ -29,5 +28,15 @@ public class AluguelServiceImpl implements AluguelService{
     @Override
     public Aluguel salvar(Aluguel aluguel) {
         return aluguelRepository.salvar(aluguel);
+    }
+
+    @Override
+    public Aluguel buscarAluguel(String placa) {
+       return aluguelRepository.buscarAluguel(placa);
+    }
+
+    @Override
+    public void deletarAluguel(Aluguel aluguel) {
+        aluguelRepository.deletarAluguel(aluguel);
     }
 }

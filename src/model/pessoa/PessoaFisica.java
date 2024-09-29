@@ -17,16 +17,6 @@ public class PessoaFisica extends Pessoa {
     }
 
     @Override
-    public String gerarComprovanteAluguel() {
-        return "Comprovante de Aluguel - Pessoa Física: " + getNome() + ", CPF: " + cpf;
-    }
-
-    @Override
-    public String gerarComprovanteDevolucao() {
-        return "Comprovante de Devolução - Pessoa Física: " + getNome() + ", CPF: " + cpf;
-    }
-
-    @Override
     public String toString() {
         return "Pessoa Fisica: " + getNome() +
                 "cpf= " + cpf;

@@ -10,5 +10,6 @@ public abstract class AluguelRepository{
     public abstract Aluguel salvar(Aluguel aluguel) ;
     public abstract LocalDate definirDataInicial();
     public abstract LocalDate definirDataDeDevolucaoPrevista(LocalDate dataInicial, int quantidadeDias);
-    // public abstract List<Veiculo> listarAlugueis();
+    public abstract Aluguel buscarAluguel(String placa);
+    public abstract void deletarAluguel(Aluguel aluguel);
 }

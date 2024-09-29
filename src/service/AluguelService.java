@@ -9,4 +9,6 @@ public interface AluguelService{
     LocalDate definirDataInicial();
     LocalDate definirDataDeDevolucaoPrevista(LocalDate dataInicial, int quantidadeDias);
     Aluguel salvar(Aluguel aluguel);
+    Aluguel buscarAluguel(String placa);
+    void deletarAluguel(Aluguel aluguel);
 }

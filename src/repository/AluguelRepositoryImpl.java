@@ -1,6 +1,7 @@
 package repository;
 import model.aluguel.Aluguel;
 import model.pessoa.Pessoa;
+import model.veiculo.Veiculo;
 import service.AluguelService;
 
 import java.time.LocalDate;
@@ -24,11 +25,9 @@ public class AluguelRepositoryImpl extends AluguelRepository {
         return instancia;
     }
 
-
     @Override
     public LocalDate definirDataInicial() {
-        LocalDate dataInicial = LocalDate.now();
-        return formatarData(dataInicial);
+        return LocalDate.now();
     }
 
     @Override
@@ -38,13 +37,27 @@ public class AluguelRepositoryImpl extends AluguelRepository {
 
     @Override
     public Aluguel salvar(Aluguel aluguel) {
-        bancoDados.add((Aluguel) aluguel);
+        bancoDados.add(aluguel);
         return aluguel;
     }
 
-    private LocalDate formatarData(LocalDate data) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dataFormatada = data.format(formatter);
-        return LocalDate.parse(dataFormatada, formatter);
+    public List<Aluguel> getBancoDados() {
+        return bancoDados;
+    }
+
+    public Aluguel buscarAluguel(String placa) {
+        for (Aluguel aluguel : bancoDados) {
+            if (aluguel.getVeiculo().getPlaca().equals(placa)) {
+                return aluguel;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void deletarAluguel(Aluguel aluguel) {
+        if (bancoDados.contains(aluguel)) {
+            bancoDados.remove(aluguel);
+        }
     }
 }

@@ -1,23 +1,35 @@
 package model.aluguel;
+
 import model.agencia.Agencia;
 import model.pessoa.Pessoa;
 import model.veiculo.Veiculo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Aluguel {
     protected Pessoa cliente;
     protected Agencia agencia;
     protected Veiculo veiculo;
-    protected LocalDateTime dataInicio;
-    protected LocalDateTime dataDevolucaoPrevista;
+    protected LocalDate dataInicio;
+    protected LocalDate dataDevolucaoPrevista;
 
-    public Aluguel(Pessoa cliente, Agencia agencia, Veiculo veiculo, LocalDateTime dataInicio, LocalDateTime dataDevolucaoPrevista) {
+    public Aluguel(Pessoa cliente, Agencia agencia, Veiculo veiculo, LocalDate dataInicio, LocalDate dataDevolucaoPrevista) {
         this.cliente = cliente;
         this.agencia = agencia;
         this.veiculo = veiculo;
         this.dataInicio = dataInicio;
         this.dataDevolucaoPrevista = dataDevolucaoPrevista;
+    }
+
+    public void imprimirComprovanteAluguel(int quantidadeDias, String tipoPessoa) {
+        System.out.println("=== Informações do Cadastro ===");
+        System.out.println("Tipo: Pessoa " + tipoPessoa);
+        System.out.println("Cliente: " + cliente.getNome());
+        System.out.println("Agencia: " + agencia.getNome());
+        System.out.println("Veiculo: " + veiculo.getPlaca() + " | " + veiculo.getModelo());
+        System.out.println("Data de inicio: " + dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println("A quantidade de dias do aluguel é: " + quantidadeDias + " dias.");
     }
 
     public Pessoa getCliente() {
@@ -44,19 +56,20 @@ public class Aluguel {
         this.veiculo = veiculo;
     }
 
-    public LocalDateTime getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(LocalDateTime dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public LocalDateTime getDataDevolucaoPrevista() {
+    public LocalDate getDataDevolucaoPrevista() {
         return dataDevolucaoPrevista;
     }
 
-    public void setDataDevolucaoPrevista(LocalDateTime dataDevolucaoPrevista) {
+    public void setDataDevolucaoPrevista(LocalDate dataDevolucaoPrevista) {
         this.dataDevolucaoPrevista = dataDevolucaoPrevista;
     }
+
 }
