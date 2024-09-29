@@ -11,7 +11,7 @@
 <b><span style="font-size: 18px;">Módulo 3: Programação Orientada a Objetos II</span></b><br>Projeto desenvolvido pelo grupo 5 da turma 1173 do programa <b>Santander Coders</b> 2024.1 em parceria com a <b>Ada Tech</b>
 </div>
 
-## Objetivo do Projeto
+## Objetivos do Projeto
 Criar uma aplicação que gerencie o aluguel de veículos, onde cada item abaixo seja considerado:
 - Cadastrar os veículos;
 - Alterar um veículo cadastrado;
@@ -52,6 +52,12 @@ Valores base da diária por tipo de veículo:
 | Moto            | R$ 100,00     |
 | Carro           | R$ 150,00     |
 | Caminhão        | R$ 200,00     |
+
+## Principais classes
+
+```
+
+```
 
 ## Linguagem
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)

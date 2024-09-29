@@ -1,5 +1,5 @@
 import controller.MenuPrincipal;
-import model.exception.OpcaoInvalidaException;
+import exception.OpcaoInvalidaException;
 
 public class Main {
     public static void main(String[] args) {

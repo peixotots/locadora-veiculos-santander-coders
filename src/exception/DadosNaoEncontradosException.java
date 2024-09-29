@@ -1,4 +1,4 @@
-package model.exception;
+package exception;
 
 public class DadosNaoEncontradosException extends RuntimeException {
     public DadosNaoEncontradosException() {

@@ -1,4 +1,4 @@
-package model.exception;
+package exception;
 
 public class DadoInvalidoException extends Exception {
     public DadoInvalidoException() {
