@@ -53,7 +53,7 @@ Valores base da diária por tipo de veículo:
 | Carro           | R$ 150,00     |
 | Caminhão        | R$ 200,00     |
 
-## Principais Classes
+## Diagrama de Classes
 
 ```mermaid
 ---
