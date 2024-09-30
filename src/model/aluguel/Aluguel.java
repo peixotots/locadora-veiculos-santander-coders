@@ -28,7 +28,8 @@ public class Aluguel {
         System.out.println("Cliente: " + cliente.getNome());
         System.out.println("Agência: " + agencia.getNome());
         System.out.println("Veículo: " + veiculo.getPlaca() + " | " + veiculo.getModelo());
-        System.out.println("Data de inicio: " + dataInicio.format(DateTimeFormatter.ofPattern("dd/mm/yyyy")));
+        System.out.println("Data de inicio: " + dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println("Data de devolução prevista: " + dataDevolucaoPrevista.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println("A quantidade de dias do aluguel é: " + quantidadeDias + " dias.");
     }
 
