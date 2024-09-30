@@ -36,12 +36,16 @@ public class MenuAluguel extends Menu {
                     case 1:
                         try {
                             System.out.println("Aluguel");
-
                             String tipoPessoa = Util.lerTexto("Deseja alugar para pessoa física ou jurídica?").toLowerCase();
-                            String nomeClienteParaAluguel = Util.lerTexto("Digite o nome da Pessoa: ");
+                            tipoPessoa = Util.validarOpcoes(tipoPessoa);
+                            String nomeClienteParaAluguel = Util.lerTexto("Digite o nome da Pessoa: ").toLowerCase();
                             Pessoa cliente = pessoaService.buscarPorNome(nomeClienteParaAluguel);
 
-                            String agenciaEscolhida = Util.lerTexto("Digite o nome ou endereço da Agência: ");
+                            if (cliente == null) {
+                                return;
+                            }
+
+                            String agenciaEscolhida = Util.lerTexto("Digite o nome ou endereço da Agência: ").toLowerCase();
                             List<Agencia> agenciasEncontradas = agenciaService.buscarPorNomeOuEndereco(agenciaEscolhida);
 
                             if (agenciasEncontradas.isEmpty()) {
@@ -81,7 +85,13 @@ public class MenuAluguel extends Menu {
 
                             LocalDate dataInicial = aluguelService.definirDataInicial();
 
-                            int quantidadeDias = Util.lerNumeroInteiro("Digite a quantidade de dias que você deseja alugar o veículo: ");
+                            int quantidadeDias;
+                            try {
+                                quantidadeDias = Util.lerNumeroInteiro("Digite a quantidade de dias que você deseja alugar o veículo: ");
+                            } catch (OpcaoInvalidaException e) {
+                                System.out.println(e.getMessage());
+                                return;
+                            }
                             LocalDate dataDevolucaoPrevista = aluguelService.definirDataDeDevolucaoPrevista(dataInicial, quantidadeDias);
 
                             Aluguel aluguel = new Aluguel(cliente, agenciaSelecionada, veiculoEscolhido, dataInicial, dataDevolucaoPrevista);
@@ -96,6 +106,7 @@ public class MenuAluguel extends Menu {
                         try {
                             System.out.println("Devolução");
                             String tipoPessoa = Util.lerTexto("Pessoa física ou jurídica? ").toLowerCase();
+                            tipoPessoa = Util.validarOpcoes(tipoPessoa);
 
                             String placaParaDevolucao = Util.lerTexto("Digite a placa do veículo: ");
                             Aluguel aluguel = aluguelService.buscarAluguel(placaParaDevolucao);
@@ -105,15 +116,15 @@ public class MenuAluguel extends Menu {
                             }
                             Devolucao devolucao = new Devolucao(aluguel);
 
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                             LocalDate dataFinal = null;
 
                             while (dataFinal == null) {
                                 try {
-                                    String inputDataDevolucao = Util.lerTexto("Digite a data da devolução (ex: dd/mm/yyyy): ");
+                                    String inputDataDevolucao = Util.lerTexto("Digite a data da devolução (ex: dd/MM/yyyy): ");
                                     dataFinal = LocalDate.parse(inputDataDevolucao, formatter);
                                 } catch (Exception e) {
-                                    System.out.println("Data inválida. Por favor, use o formato dd/mm/yyyy.");
+                                    System.out.println("Data inválida. Por favor, use o formato dd/MM/yyyy.");
                                 }
                             }
                             double valorTotalAluguel = devolucao.calcularDevolucao(dataFinal, tipoPessoa);

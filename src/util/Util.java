@@ -13,7 +13,7 @@ public class Util {
     public static String lerTexto(String pergunta) throws DadoInvalidoException {
         System.out.println(pergunta);
         String texto = entrada.nextLine();
-        while (texto.isEmpty()){
+        while (texto.isEmpty()) {
             System.err.println("Entrada inválida. Digite um texto válido.");
             texto = entrada.nextLine();
         }
@@ -36,5 +36,12 @@ public class Util {
         if (!placa.matches(regex)) {
             throw new PlacaInvalidaException();
         } else return true;
+    }
+
+    public static String validarOpcoes(String opcao) throws OpcaoInvalidaException {
+        if (!opcao.equals("juridica") && !opcao.equals("fisica")) {
+            throw new OpcaoInvalidaException();
+        }
+        return opcao;
     }
 }
