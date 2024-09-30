@@ -45,7 +45,7 @@ public class MenuAluguel extends Menu {
                                 return;
                             }
 
-                            String agenciaEscolhida = Util.lerTexto("Digite o nome ou endereço da Agência: ").toLowerCase();
+                            String agenciaEscolhida = Util.lerTexto("Digite o nome ou endereço da Agência: ");
                             List<Agencia> agenciasEncontradas = agenciaService.buscarPorNomeOuEndereco(agenciaEscolhida);
 
                             if (agenciasEncontradas.isEmpty()) {
